@@ -1,0 +1,14 @@
+{
+    "petsInfo":[
+        {
+            "name" : "Pancho",
+            "animalShelter": "animalShelter1",
+            "picture": "picture1.png"
+        },
+        {
+            "name" : "Pepe",
+            "animalShelter": "animalShelter2",
+            "picture": "picture2.png"
+        } 
+    ]
+}
