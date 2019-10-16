@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:pet_team/core/usecases/usecase.dart';
 import 'package:pet_team/pets/domain/usecases/get_pets_information.dart';
 import './bloc.dart';
 import 'package:meta/meta.dart';
@@ -19,6 +20,13 @@ class PetsinformationblocBloc
   Stream<PetsinformationblocState> mapEventToState(
     PetsinformationblocEvent event,
   ) async* {
-    // TODO: Add Logic
+    if (event is GetPetsInformationEvent) {
+      yield Loading();
+      final failureOrPetsInfo = await getPetsInformation(NoParams());
+      yield failureOrPetsInfo.fold(
+        (failure) => Error(message: "Error"), 
+        (petsInfo) => PetsInformationLoaded(petsInformation: petsInfo)
+        );
+    }
   }
 }

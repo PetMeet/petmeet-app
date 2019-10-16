@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pet_team/core/error/failures.dart';
 import 'package:pet_team/core/platform/network_info.dart';
 import 'package:pet_team/pets/data/datasources/pets_information_local_data_source.dart';
 import 'package:pet_team/pets/data/datasources/pets_information_remote_data_source.dart';

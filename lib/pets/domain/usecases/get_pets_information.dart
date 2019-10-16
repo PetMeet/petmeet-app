@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:pet_team/core/error/failures.dart';
 import 'package:pet_team/core/usecases/usecase.dart';
 import 'package:pet_team/pets/domain/entities/PetInfo.dart';
