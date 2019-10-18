@@ -26,7 +26,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    bool favoritePressed;
+  bool favoritePressed;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,18 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-
   Widget _buildCard() {
-
-    _setFavorite() {
-      if (favoritePressed != null && favoritePressed) {
-        favoritePressed = false;
-      } else {
-        favoritePressed = true;
-      }
-    }
-
     return SizedBox(
       height: 560.0,
       child: Card(
@@ -87,21 +76,50 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _setFavorite();
-                    });
-                  },
-                  icon: favoritePressed != null && favoritePressed
-                      ? Icon(Icons.favorite, color: Colors.red,)
-                      : Icon(Icons.favorite_border, color: Colors.red),
-                )
+                FavoriteStateWidget(),
               ]),
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class FavoriteStateWidget extends StatefulWidget {
+  FavoriteStateWidget({Key key}) : super(key: key);
+
+  @override
+  _FavoriteStateWidget createState() {
+    return _FavoriteStateWidget();
+  }
+}
+
+class _FavoriteStateWidget extends State<FavoriteStateWidget> {
+  bool favoritePressed;
+
+  _setFavorite() {
+    if (favoritePressed != null && favoritePressed) {
+      favoritePressed = false;
+    } else {
+      favoritePressed = true;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          _setFavorite();
+        });
+      },
+      icon: favoritePressed != null && favoritePressed
+          ? Icon(
+              Icons.favorite,
+              color: Colors.red,
+            )
+          : Icon(Icons.favorite_border, color: Colors.red),
     );
   }
 }
