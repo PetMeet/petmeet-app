@@ -26,56 +26,82 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    bool favoritePressed;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildCard(),
-            _buildCard(),
-          ],
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: _buildList(),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  Widget _buildCard() => SizedBox(
-    height: 210,
-    child: Card(
-      child: Column(
-        children: [
-          ListTile(
-            title: Text('1625 Main Street',
-                style: TextStyle(fontWeight: FontWeight.w500)),
-            subtitle: Text('My City, CA 99984'),
-            leading: Icon(
-              Icons.restaurant_menu,
-              color: Colors.blue[500],
+  Widget _buildList() {
+    return ListView.builder(
+      itemCount: 3,
+      itemBuilder: (BuildContext context, index) {
+        return _buildCard();
+      },
+    );
+  }
+
+
+
+  Widget _buildCard() {
+
+    _setFavorite() {
+      if (favoritePressed != null && favoritePressed) {
+        favoritePressed = false;
+      } else {
+        favoritePressed = true;
+      }
+    }
+
+    return SizedBox(
+      height: 560.0,
+      child: Card(
+        elevation: 2,
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(),
+                ),
+                Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(children: <Widget>[
+                      Text("Pancho"),
+                      Text("Vilapeixiño"),
+                    ])),
+              ],
             ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text('(408) 555-1212',
-                style: TextStyle(fontWeight: FontWeight.w500)),
-            leading: Icon(
-              Icons.contact_phone,
-              color: Colors.blue[500],
+            Container(
+              child: Image(
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage('https://cataas.com/cat')),
             ),
-          ),
-          ListTile(
-            title: Text('costa@example.com'),
-            leading: Icon(
-              Icons.contact_mail,
-              color: Colors.blue[500],
-            ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(children: <Widget>[
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _setFavorite();
+                    });
+                  },
+                  icon: favoritePressed != null && favoritePressed
+                      ? Icon(Icons.favorite, color: Colors.red,)
+                      : Icon(Icons.favorite_border, color: Colors.red),
+                )
+              ]),
+            )
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
