@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'PetMeet Structure',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'PetMeet'),
     );
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ])),
               ],
             ),
-            Container(
+            Expanded(
               child: Image(
                   fit: BoxFit.fitWidth,
                   image: NetworkImage('https://cataas.com/cat')),
