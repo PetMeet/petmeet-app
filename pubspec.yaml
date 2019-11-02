@@ -19,7 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  # Dependency injection Service locator
+  get_it: ^2.0.1
   # Value equality
   equatable: ^0.4.0
   # Functional programming thingies
