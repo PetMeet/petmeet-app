@@ -7,14 +7,20 @@ import 'package:meta/meta.dart';
 
 class PetsinformationblocBloc
     extends Bloc<PetsinformationblocEvent, PetsinformationblocState> {
+      
   final GetPetsInformation getPetsInformation;
 
   PetsinformationblocBloc({@required GetPetsInformation getPetsInformation})
       : assert(getPetsInformation != null),
         getPetsInformation = getPetsInformation;
 
+  //@override
+  //PetsinformationblocState get initialState => Empty();
+
   @override
-  PetsinformationblocState get initialState => Empty();
+  PetsinformationblocState get initialState {
+    return Empty();
+  }
 
   @override
   Stream<PetsinformationblocState> mapEventToState(

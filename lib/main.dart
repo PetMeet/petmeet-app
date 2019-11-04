@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pet_team/pets/domain/usecases/get_pets_information.dart';
 import 'package:pet_team/pets/presentation/bloc/bloc.dart';
 import 'package:pet_team/pets/presentation/widgets/loading_widget.dart';
 import 'package:pet_team/pets/presentation/widgets/message_display.dart';
@@ -36,7 +35,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
+  PetsinformationblocBloc createBloc() {
+    PetsinformationblocBloc bloc = di.sl<PetsinformationblocBloc>();
+    bloc.dispatch(GetPetsInformationEvent());
+    return bloc;
+  }
 
   bool favoritePressed;
   @override
@@ -49,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocProvider(
-        builder: (_) => di.sl<PetsinformationblocBloc>(),
+        builder: (_) => createBloc(),
         child: BlocBuilder<PetsinformationblocBloc, PetsinformationblocState>(
             builder: (context, state) {
           if (state is Empty) {
