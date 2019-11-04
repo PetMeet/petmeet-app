@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_team/pets/domain/usecases/get_pets_information.dart';
+import 'package:pet_team/pets/presentation/bloc/bloc.dart';
+import 'package:pet_team/pets/presentation/widgets/loading_widget.dart';
+import 'package:pet_team/pets/presentation/widgets/message_display.dart';
 import 'injection_container.dart' as di;
 
 void main() {
@@ -30,14 +35,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+
+
   bool favoritePressed;
   @override
   Widget build(BuildContext context) {
+  
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _buildList(),
+      body: BlocProvider(
+        builder: (_) => di.sl<PetsinformationblocBloc>(),
+        child: BlocBuilder<PetsinformationblocBloc, PetsinformationblocState>(
+            builder: (context, state) {
+          if (state is Empty) {
+            return MessageDisplay(message: 'No pets availables',);
+          } else if (state is Loading) {
+            return LoadingWidget();
+          } else if (state is Error) {
+            return MessageDisplay(message: 'Error loading new pets :(');
+          } else if (state is PetsInformationLoaded) {
+            return _buildList();
+          }
+        }),
+      ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
