@@ -14,13 +14,8 @@ class PetsinformationblocBloc
       : assert(getPetsInformation != null),
         getPetsInformation = getPetsInformation;
 
-  //@override
-  //PetsinformationblocState get initialState => Empty();
-
   @override
-  PetsinformationblocState get initialState {
-    return Empty();
-  }
+  PetsinformationblocState get initialState => Empty();
 
   @override
   Stream<PetsinformationblocState> mapEventToState(
