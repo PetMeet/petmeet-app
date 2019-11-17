@@ -20,6 +20,6 @@ class PetsInformationRespositoryImpl implements PetsInfoRepository {
   @override
   Future<Either<Failure, List<PetInfo>>> getPetsInformation() async {
     networkInfo.isConnected;
-    return Right(await localDataSource.getPetsInformation());
+    return Right(await remoteDataSource.getPetsInformation());
   }
 }

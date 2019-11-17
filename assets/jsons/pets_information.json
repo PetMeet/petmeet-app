@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Pancho",
+        "animalShelter": "Vilapeixiño",
+        "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyIYy7ScqpOuwElZdUGqLyJzCberaxctiQc5SaX43BYaDtnRF4sg&s"
+    },
+    {
+        "name": "Manolo",
+        "animalShelter": "Protectora Vilagarcía",
+        "picture": "https://live.staticflickr.com/8048/29394708153_22a950d3e6_b.jpg"
+    },
+    {
+        "name": "Pepo",
+        "animalShelter": "Refuxio animais Bando",
+        "picture": "https://farm6.staticflickr.com/5685/22780078235_a086a15ebf_b.jpg"
+    }
+]

@@ -7,7 +7,6 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 import '../models/pet_information_model.dart';
-import '../models/pet_information_model.dart';
 
 abstract class PetsInformationRemoteDataSource {
     Future<List<PetInformationModel>> getPetsInformation();
@@ -22,7 +21,7 @@ class PetsInformationRemoteDataSourceImpl implements PetsInformationRemoteDataSo
   @override
   Future<List<PetInformationModel>> getPetsInformation() async {
     List<PetInformationModel> petList = new List<PetInformationModel>();
-    List<dynamic> petsJson = json.decode(await rootBundle.loadString(""));
+    List<dynamic> petsJson = json.decode(await rootBundle.loadString("assets/jsons/pets_information.json"));
     petList = petsJson.map((i)=>PetInformationModel.fromJson(i)).toList();
     return petList; 
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_team/pets/domain/entities/PetInfo.dart';
 import 'package:pet_team/pets/presentation/bloc/bloc.dart';
 import 'package:pet_team/pets/presentation/widgets/loading_widget.dart';
 import 'package:pet_team/pets/presentation/widgets/message_display.dart';
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           } else if (state is Error) {
             return MessageDisplay(message: 'Error loading new pets :(');
           } else if (state is PetsInformationLoaded) {
-            return _buildList();
+            return _buildList(state.petsInformation);
           }
         }),
       ),
@@ -70,16 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildList() {
+  Widget _buildList(List<PetInfo> petsInfo) {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: petsInfo.length,
       itemBuilder: (BuildContext context, index) {
-        return _buildCard();
+        return _buildCard(petsInfo[index]);
       },
     );
   }
 
-  Widget _buildCard() {
+  Widget _buildCard(PetInfo petInfo) {
     return SizedBox(
       height: 560.0,
       child: Card(
@@ -95,15 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Column(children: <Widget>[
-                      Text("Pancho"),
-                      Text("Vilapeixiño"),
+                      Text(petInfo.name),
+                      Text(petInfo.animalShelter),
                     ])),
               ],
             ),
             Expanded(
               child: Image(
                   fit: BoxFit.fitWidth,
-                  image: NetworkImage('https://cataas.com/cat')),
+                  image: NetworkImage(petInfo.picture)),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
